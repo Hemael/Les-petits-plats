@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Les petits plats</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../assets/iconplats.png">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script defer type="module" src="../scripts/utils/recipes.js"></script>
+    <script defer type="module" src="../scripts/factories/recettes.js"></script>
+    <script defer type="module" src="../scripts/pages/index.js"></script>
+    
+  </head>
+
+
+  <body>
+
+    <header>
+        <nav>
+            <a href="index.html"><img src="assets/logo.png" alt="Les petits plats" id="logo" /></a>
+            <div id="recherche">
+                <h1 id="search-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN, SIMPLE ET DÉLICIEUSES</h1>
+                <div id="searchBar" aria-label="Barre de recherche" aria-labelledby="search-title">
+                    <label for="searchRecettes"></label>
+                    <input type="search" id="site-search" name="searchRecettes" placeholder="Rechercher une recette, un ingrédient,.."required/>
+                    <button class="buttonClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
+                    <button class="buttonSearch" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main id="main">
+        <div class="searchFiltre">
+        </div>
+        
+        <div class="boiteRecette">
+            
+        </div>
+    </main>
+    
+
+  </body>
+</html>

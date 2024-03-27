@@ -1,0 +1,204 @@
+body{
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    margin: 0px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+main{
+    background-color: #EDEDED;
+    width: 1440px;
+}
+
+header{ 
+    background-image: url("../assets/lampos-aritonang.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1440px;
+    height: 667px;
+}
+
+h1{
+    font-family: "Anton", sans-serif;
+    color: #FFD15B;
+    font-size: 44px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#logo{
+    height: 25.26px;
+    margin-top: 35px;
+    margin-left: 15px;
+}
+
+#recherche{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 100px;
+}
+
+#site-search{
+    width: 954px;
+    height: 72px;
+    border-radius: 11px;
+    outline: none;
+    border: none;
+}
+#searchBar{
+    display: flex;
+    align-items: center;
+}
+
+.buttonSearch{
+    margin-left: 10px;
+    width: 51px;
+    height: 52px;
+    background-color: #1B1B1B;
+    border-radius: 10px;
+    border-style: none;
+    color:white;
+}
+input[type="search"] {
+    font-size: 16px;
+    color: #7A7A7A;
+    padding-left: 35px;
+}
+.buttonSearch:hover{
+    background-color: #FFD15B;
+    color: black;
+}
+
+.buttonClear{
+    margin-left: -92px;
+    background-color: transparent;
+    border-style: none;
+    font-size: 22px;
+    color: #7A7A7A;
+    opacity: 0;
+}
+
+#site-search:valid + .buttonClear {
+  opacity: 1;
+}
+
+.boiteRecette{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 80px;
+}
+
+.carteRecette{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    height: 731px;
+    background-color:white;
+    border-radius: 21px;
+    margin-right: 24px;
+    margin-left:24px;
+    margin-top: 66px;
+    
+}
+
+.imageRecette{
+    object-fit: cover;
+    height: 253px;
+    border-top-right-radius: 21px;
+    border-top-left-radius: 21px;
+}
+
+h2{
+    margin-left: 25px;
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    margin-top: 32px;
+}
+
+.secRecette{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.titreCategorie{
+    color:#7A7A7A;
+    font-family: "manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16.39px;
+    letter-spacing: 9%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+}
+
+.textRecette{
+    font-family: "manrope", sans-serif;
+    height: 76px;
+    width: 330px;
+    overflow: hidden;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19.12px;
+    color:black;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+ .secIngredients{
+    margin-top: 32px;
+    margin-left: 25px;
+    width: 299px;
+    height: 190px;
+ }
+.ingredientDiv{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 296px));
+    gap: 1px 5rem;   
+    
+}
+.quantite{
+    margin: 0px;
+    color: #7A7A7A;
+    font-weight: 400;
+    line-height: 19.12px;
+    font-size: 14px;
+
+    
+}
+.ingredient{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.12px;
+    color:#1B1B1B ;
+    grid-column: span 1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 149px;
+    max-height: 40px;
+    margin-bottom: 21px;
+}
+
+.secIngredients .titreCategorie{
+    margin-bottom: 15px;
+}
+
+.timePrep{
+    position:absolute;
+    right: 21px;
+    top: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFD15B;
+    border-radius: 14px;
+    width: 63px;
+    height: 26px;
+    font-weight: 400;
+    font-size: 12px;
+}
