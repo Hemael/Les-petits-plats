@@ -202,3 +202,94 @@ h2{
     font-weight: 400;
     font-size: 12px;
 }
+
+
+.hide{
+ display: none;
+}
+.searchFiltre{
+    display: flex;
+    margin-left: 104px;
+}
+.container{
+    display: flex;
+    background-color: white;
+    border-radius: 11px;
+    width: 195px;
+    height: 56px;
+    margin-right: 66px;
+    margin-top: 21px;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+.openItem{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.chevron{
+    display: flex;
+    margin-top: 25px;
+    margin-left: 50px;
+    font-weight: 600;
+}
+
+.containerSearch{
+    background-color: white;
+    margin-top: -15px;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px ;
+    width: 195px;
+}
+.containerList{
+    padding-left: 16px;
+    font-weight: 400;
+    font-size: 14px;
+
+}
+
+.appareils-box, .ustensils-box, .ingredient-box{
+    margin-bottom: 13px;
+}
+
+.barFiltre{
+    width: 163px;
+    height: 36px;
+    border: solid 1px #c6c6c6;
+    outline: none;
+    font-weight: 400;
+    color: #7A7A7A;
+    font-size: 14PX;
+   
+}
+
+.buttonFiltre, .filtreClear{
+    background-color: transparent;
+    border: none;
+}
+.filtreSearch{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.filtreClear{
+    margin-left: -50px;
+    opacity: 0;
+}
+
+.barFiltre:valid + .filtreClear {
+    opacity: 1;
+}
+
+input.barFiltre{
+    padding : 0px;
+    padding-left: 6px;
+    color: #7A7A7A;
+}
+
+
+

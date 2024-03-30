@@ -30,4 +30,38 @@ async function displayData(recettes) {
 }
 
 
-  init();
+// Obtenez tous les éléments avec la classe 'openItem' et ajoutez un écouteur d'événement click à chacun d'eux
+document.querySelectorAll('.openItem').forEach((item) => {
+  item.addEventListener('click', () => {
+    // Mettre la classe 'hide' sur les éléments 'filtreSearch' et 'containerList' pour le conteneur actuel
+    item.nextElementSibling.classList.toggle('hide');
+  });
+});
+
+// Obtenez tous les éléments avec la classe 'iconSearch' et ajoutez un écouteur d'événement click à chacun d'eux
+document.querySelectorAll('.iconSearch').forEach((item) => {
+  item.addEventListener('click', function() {
+      // Appelez la fonction 'filtre' avec le type de données et la valeur de filtre appropriés pour le conteneur actuel
+      filtre(item.getAttribute('data-type'), item.parentNode.previousElementSibling.value);
+  });
+});
+
+function filtre(type, value) {
+  // Obtenez tous les éléments avec la classe qui correspond au type de données et basculez la classe 'hide' en fonction de savoir s'ils incluent la valeur de filtre
+  document.querySelectorAll(`.${type}-box`).forEach((item) => {
+      if (item.innerHTML.includes(value)) {
+          item.classList.remove('hide');
+      } else {
+          item.classList.add('hide');
+      }
+  });
+}
+
+
+
+
+init();
+
+
+
+  

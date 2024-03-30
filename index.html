@@ -35,13 +35,84 @@
     </header>
     
     <main id="main">
-        <div class="searchFiltre">
+
+      <div class="searchFiltre">
+
+        <div class="container">
+          
+          <div class="openItem">
+            <p>Ingréditents</p>
+            <p class="chevron">﹀</p>
+          </div>
+
+          <div class="containerSearch hide">
+
+            <div class="filtreSearch">
+              <input class="barFiltre" id="ingredient-search" type="text">
+              <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
+              <button id='iconSearch' data-type='ingredient' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+            </div>
+
+            <div class="containerList">
+              <div class="ingredient-box">fraise</div>
+              <div class="ingredient-box">pomme</div>
+              <div class="ingredient-box">poire</div>
+              <div class="ingredient-box">croquette</div>
+            </div>
         </div>
-        
-        <div class="boiteRecette">
+
+        </div>
+        <div class="container">
+          <div class="openItem">
+            <p>Ustensils</p>
+            <p class="chevron">﹀</p>
+          </div>
+
+          <div class="containerSearch hide">
+
+            <div class="filtreSearch">
+              <input class="barFiltre" type="text" >
+              <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times" aria-placeholder="  "></i></button>
+              <button id='iconSearch' data-type='appareils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+            </div>
+
+            <div class="containerList">
+              <div class="appareils-box">fraise</div>
+              <div class="appareils-box">pomme</div>
+              <div class="appareils-box">poire</div>
+              <div class="appareils-box">croquette</div>
+            </div>
+        </div>
+
+        </div>
+        <div class="container">
+          <div class="openItem">
+            <p>Appareils</p>
+            <p class="chevron">﹀</p>
+          </div> 
+
+           <div class="containerSearch hide">
             
+            <div class="filtreSearch">
+              <input class="barFiltre" type="text">
+              <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
+              <button id='iconSearch' data-type='ustensils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+            </div>
+
+            <div class="containerList">
+              <div class="ustensils-box">fraise</div>
+              <div class="ustensils-box">pomme</div>
+              <div class="ustensils-box">poire</div>
+              <div class="ustensils-box">croquette</div>
+            </div>
         </div>
-    </main>
+
+        </div>
+      </div>
+        
+      <div class="boiteRecette">    
+      </div>
+  </main>
     
 
   </body>
