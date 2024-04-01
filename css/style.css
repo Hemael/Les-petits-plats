@@ -56,6 +56,7 @@ h1{
 
 .buttonSearch{
     margin-left: 10px;
+
     width: 51px;
     height: 52px;
     background-color: #1B1B1B;
@@ -74,7 +75,7 @@ input[type="search"] {
 }
 
 .buttonClear{
-    margin-left: -92px;
+    margin-left: -95px;
     background-color: transparent;
     border-style: none;
     font-size: 22px;
@@ -226,13 +227,12 @@ h2{
 .openItem{
     display: flex;
     justify-content: space-between;
-    margin-left: 16px;
     font-weight: 500;
     font-size: 16px;
 }
 .chevron{
     display: flex;
-    margin-top: 25px;
+    margin-top: 23px;
     margin-left: 50px;
     font-weight: 600;
 }
@@ -243,6 +243,8 @@ h2{
     border-bottom-left-radius: 11px;
     border-bottom-right-radius: 11px ;
     width: 195px;
+    height: 259px;
+
 }
 .containerList{
     padding-left: 16px;
@@ -261,7 +263,7 @@ h2{
     border: solid 1px #c6c6c6;
     outline: none;
     font-weight: 400;
-    color: #7A7A7A;
+    color: #c6c6c6;
     font-size: 14PX;
    
 }
@@ -269,11 +271,13 @@ h2{
 .buttonFiltre, .filtreClear{
     background-color: transparent;
     border: none;
+    color: #7A7A7A;
 }
 .filtreSearch{
     display: flex;
     justify-content: center;
     margin-bottom: 24px;
+    margin-top: 14px;
 }
 
 .filtreClear{
@@ -288,8 +292,13 @@ h2{
 input.barFiltre{
     padding : 0px;
     padding-left: 6px;
-    color: #7A7A7A;
+    
 }
 
+[type="search"] {
+    &::-webkit-search-cancel-button{
+        display: none;
+    }
+  }
 
 

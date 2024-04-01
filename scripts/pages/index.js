@@ -8,8 +8,6 @@ async function getRecette() {
   return recipes;
 
 }
-  
-  
 
 async function init() {
 // Récupère les datas des recettes
@@ -25,10 +23,10 @@ async function displayData(recettes) {
         const recetteCard = recetteFactory();
         const prepaRecetteCardDOM = recetteCard.recetteCardDOM(recettes);
         recetteSection.appendChild(prepaRecetteCardDOM);
+
     });
 
 }
-
 
 // Obtenez tous les éléments avec la classe 'openItem' et ajoutez un écouteur d'événement click à chacun d'eux
 document.querySelectorAll('.openItem').forEach((item) => {
@@ -58,6 +56,15 @@ function filtre(type, value) {
 }
 
 
+const buttons = document.querySelectorAll('.filtreClear, .buttonClear');
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const input = button.previousElementSibling;
+    if (input && input.tagName.toLowerCase() === 'input') {
+      input.value = '';
+    }
+  });
+});
 
 
 init();

@@ -5,7 +5,8 @@ export function recetteFactory(){
         const picture = `assets/images/${image}`;
 
 
-        const boiteRecette =document.querySelector(".boiteRecette");
+        const boiteRecette = document.querySelector(".boiteRecette");
+        
         
         const article = document.createElement('article');
         const h2 = document.createElement("h2");
@@ -20,6 +21,7 @@ export function recetteFactory(){
         const img =document.createElement('img');
         img.setAttribute("src",picture);
         img.setAttribute("alt", `${name} - Recette`)
+        
 
         article.classList.add("carteRecette");
         img.classList.add("imageRecette");
@@ -53,27 +55,31 @@ export function recetteFactory(){
         
         
         recipes.ingredients.forEach((ingredientObj) => {
-            const recIngredient = document.createElement("p");      
-            const recQuantite = document.createElement("p");      
-            
-            recIngredient.classList.add("ingredient");     
-            recQuantite.classList.add("quantite");       
-           
-            recIngredient.textContent = ingredientObj.ingredient;
-            
-            let quantityText = ingredientObj.quantity;
+          const recIngredient = document.createElement("p");      
+          const recQuantite = document.createElement("p"); 
           
-            if (ingredientObj.unit) {
-              quantityText += ` ${ingredientObj.unit}`;
-            }
-          
-            recQuantite.textContent = quantityText;
+          recIngredient.classList.add("ingredient"); 
 
-            divIngredient.appendChild(recIngredient);
-            recIngredient.appendChild(recQuantite);
-            secIngredients.appendChild(divIngredient);
+          recQuantite.classList.add("quantite");       
+          recIngredient.textContent = ingredientObj.ingredient;
           
-          });
+          
+
+          let quantityText = ingredientObj.quantity;
+        
+          if (ingredientObj.unit) {
+            quantityText += ` ${ingredientObj.unit}`;
+          }
+        
+          recQuantite.textContent = quantityText;
+          
+          divIngredient.appendChild(recIngredient);
+          recIngredient.appendChild(recQuantite);
+          secIngredients.appendChild(divIngredient);
+          
+          
+        
+        });
 
           
 
@@ -81,6 +87,26 @@ export function recetteFactory(){
         return article;
     }
 
-    return {recetteCardDOM}
+    function searchinCardDOM(recipes){
+      const { appliance, ustensils } = recipes;
+
+      const boiteUstensils = document.querySelector('.ustensils-box');
+      const boiteIngredient = document.querySelector('.ingredient-box');
+      const boiteAppareils = document.querySelector('.appareils-box');
+
+
+      boiteUstensils.textContent = ustensils;
+      boiteAppareils.textContent = appliance;
+      
+
+      console.log(ustensils)
+
+
+
+      return { boiteAppareils, boiteIngredient, boiteUstensils};
+    }
+
+    return {recetteCardDOM, searchinCardDOM}
 
 }
+
