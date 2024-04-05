@@ -43,7 +43,7 @@ export function recetteFactory(){
         timeRecette.textContent = time + " min";
 
 
-        boiteRecette.appendChild(article);
+        //boiteRecette.appendChild(article);
         article.appendChild(timeRecette);
         article.appendChild(img);
         article.appendChild(h2);
@@ -57,9 +57,11 @@ export function recetteFactory(){
         recipes.ingredients.forEach((ingredientObj) => {
           const recIngredient = document.createElement("p");      
           const recQuantite = document.createElement("p"); 
+          const searchIngredient = document.createElement("p")
           
           recIngredient.classList.add("ingredient"); 
 
+          
           recQuantite.classList.add("quantite");       
           recIngredient.textContent = ingredientObj.ingredient;
           
@@ -76,8 +78,7 @@ export function recetteFactory(){
           divIngredient.appendChild(recIngredient);
           recIngredient.appendChild(recQuantite);
           secIngredients.appendChild(divIngredient);
-          
-          
+
         
         });
 
@@ -88,22 +89,53 @@ export function recetteFactory(){
     }
 
     function searchinCardDOM(recipes){
-      const { appliance, ustensils } = recipes;
+      const { appliance, ustensils,name } = recipes;
 
-      const boiteUstensils = document.querySelector('.ustensils-box');
-      const boiteIngredient = document.querySelector('.ingredient-box');
-      const boiteAppareils = document.querySelector('.appareils-box');
+      const searchFiltre = document.querySelector(".searchFiltre");
+      const filtreAppareils = document.querySelector(".containerAppareils")
+      const containersearchAppareils = document.querySelector(".containerSearchAppareils")
+      const containerListAppareils = document.querySelector(".containerListAppareils")
 
+      const filtreUstensils = document.querySelector(".containerUstensils")
+      const containersearchUstensils = document.querySelector(".containerSearchUstensils")
+      const containerListUstensils = document.querySelector(".containerListUstensils")
 
-      boiteUstensils.textContent = ustensils;
-      boiteAppareils.textContent = appliance;
       
+      const didi =document.createElement ('div');
+      const ulAppareils = document.createElement("ul")
+      const liAppareils = document.createElement ('li');
+      const ulUstensils = document.createElement ('ul')
+      const liUstensils = document.createElement ('li');
 
-      console.log(ustensils)
+
+
+      liAppareils.classList.add('.appareils-box');
+      liUstensils.classList.add('.ustensils-box');
+
+      
+      liAppareils.textContent = appliance;
+      liUstensils.textContent = ustensils;
 
 
 
-      return { boiteAppareils, boiteIngredient, boiteUstensils};
+      searchFiltre.appendChild(filtreAppareils)
+      filtreAppareils.appendChild(containersearchAppareils)
+      containersearchAppareils.appendChild(containerListAppareils)
+      containerListAppareils.appendChild(ulAppareils)
+      ulAppareils.appendChild(liAppareils)
+
+
+      filtreUstensils.appendChild(containersearchUstensils)
+      containersearchUstensils.appendChild(containerListUstensils)
+      containerListUstensils.appendChild(ulUstensils)
+      ulUstensils.appendChild(liUstensils)
+
+
+
+
+
+
+      return searchFiltre;
     }
 
     return {recetteCardDOM, searchinCardDOM}

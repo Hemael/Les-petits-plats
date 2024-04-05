@@ -2,6 +2,7 @@ import {recetteFactory } from "../factories/recettes.js"
 import {recipes} from "../utils/recipes.js";
 
 
+
 async function getRecette() {
 
   // return recettesData;
@@ -13,6 +14,7 @@ async function init() {
 // Récupère les datas des recettes
 const recettes = await getRecette();
 displayData(recettes);
+displayDataSearch(recettes);
 }
 
 async function displayData(recettes) {
@@ -27,6 +29,22 @@ async function displayData(recettes) {
     });
 
 }
+
+async function displayDataSearch(recettes) {
+    
+  const searchSection = document.querySelector(".searchFiltre");
+
+  recettes.forEach((recettes) => {
+      const recetteCard = recetteFactory();
+      const searchCardDOM = recetteCard.searchinCardDOM(recettes);
+      console.log(typeof searchCardDOM)
+      searchSection.appendChild(searchCardDOM);
+
+  });
+
+
+}
+
 
 // Obtenez tous les éléments avec la classe 'openItem' et ajoutez un écouteur d'événement click à chacun d'eux
 document.querySelectorAll('.openItem').forEach((item) => {
@@ -43,6 +61,7 @@ document.querySelectorAll('.iconSearch').forEach((item) => {
       filtre(item.getAttribute('data-type'), item.parentNode.previousElementSibling.value);
   });
 });
+
 
 function filtre(type, value) {
   // Obtenez tous les éléments avec la classe qui correspond au type de données et basculez la classe 'hide' en fonction de savoir s'ils incluent la valeur de filtre

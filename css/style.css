@@ -212,7 +212,7 @@ h2{
     display: flex;
     margin-left: 104px;
 }
-.container{
+.containerAppareils, .containerUstensils, .containerIngredient{
     display: flex;
     background-color: white;
     border-radius: 11px;
@@ -237,7 +237,7 @@ h2{
     font-weight: 600;
 }
 
-.containerSearch{
+.containerSearchIngredient, .containerSearchAppareils, .containerSearchUstensils{
     background-color: white;
     margin-top: -15px;
     border-bottom-left-radius: 11px;

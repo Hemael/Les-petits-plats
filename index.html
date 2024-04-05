@@ -12,7 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <script defer type="module" src="scripts/utils/recipes.js"></script>
     <script defer type="module" src="scripts/factories/recettes.js"></script>
-    <script defer type="module" src="scripts/pages/index.js"></script>
+    <script defer type="module" src="scripts/pages/index.js"></script>    
+
     
   </head>
 
@@ -38,14 +39,14 @@
 
       <div class="searchFiltre">
 
-        <div class="container">
+        <div class="containerIngredient">
           
           <div class="openItem">
             <p>Ingrédients</p>
             <p class="chevron">﹀</p>
           </div>
 
-          <div class="containerSearch hide">
+          <div class="containerSearchIngredient hide">
 
             <div class="filtreSearch">
               <input type="search" class="barFiltre" name="search-ingredient" required>
@@ -53,20 +54,20 @@
               <button id='iconSearch' data-type='ingredient' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
 
-            <div class="containerList">
+            <div class="containerListIngredients">
               <div class="ingredient-box"></div>
 
             </div>
         </div>
 
         </div>
-        <div class="container">
+        <div class="containerAppareils">
           <div class="openItem">
             <p>Appareils</p>
             <p class="chevron">﹀</p>
           </div>
 
-          <div class="containerSearch hide">
+          <div class="containerSearchAppareils hide">
 
             <div class="filtreSearch">
               <input class="barFiltre" type="search" name="search-appareils" required>
@@ -74,20 +75,20 @@
               <button id='iconSearch' data-type='appareils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
 
-            <div class="containerList">
-              <div class="appareils-box"></div>
+            <div class="containerListAppareils">
+
 
             </div>
         </div>
 
         </div>
-        <div class="container">
+        <div class="containerUstensils">
           <div class="openItem">
             <p>Ustensiles</p>
             <p class="chevron">﹀</p>
           </div> 
 
-           <div class="containerSearch hide">
+           <div class="containerSearchUstensils hide">
             
             <div class="filtreSearch">
               <input class="barFiltre" type="search" name="search-ustensils" required>
@@ -95,8 +96,8 @@
               <button id='iconSearch' data-type='ustensils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
 
-            <div class="containerList">
-              <div class="ustensils-box"></div>
+            <div class="containerListUstensils">
+
 
             </div>
         </div>
