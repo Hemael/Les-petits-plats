@@ -37,9 +37,7 @@ async function displayDataSearch(recettes) {
   recettes.forEach((recettes) => {
       const recetteCard = recetteFactory();
       const searchCardDOM = recetteCard.searchinCardDOM(recettes);
-      console.log(typeof searchCardDOM)
       searchSection.appendChild(searchCardDOM);
-
   });
 
 

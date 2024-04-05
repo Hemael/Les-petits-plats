@@ -253,9 +253,6 @@ h2{
 
 }
 
-.appareils-box, .ustensils-box, .ingredient-box{
-    margin-bottom: 13px;
-}
 
 .barFiltre{
     width: 163px;
@@ -301,4 +298,22 @@ input.barFiltre{
     }
   }
 
+  li{
+    list-style: none;
+  }
 
+  ul{
+    padding-left: 16px;
+    margin-top: 0px;
+  }
+
+  ul:hover{
+    background-color: #FFD15B;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .containerListUstensils, .containerListAppareils, .containerListIngredients{
+    height: 180px;
+    overflow: hidden;
+  }

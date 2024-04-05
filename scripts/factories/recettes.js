@@ -57,7 +57,7 @@ export function recetteFactory(){
         recipes.ingredients.forEach((ingredientObj) => {
           const recIngredient = document.createElement("p");      
           const recQuantite = document.createElement("p"); 
-          const searchIngredient = document.createElement("p")
+
           
           recIngredient.classList.add("ingredient"); 
 
@@ -88,57 +88,101 @@ export function recetteFactory(){
         return article;
     }
 
-    function searchinCardDOM(recipes){
-      const { appliance, ustensils,name } = recipes;
-
+    function searchinCardDOM(recipes) {
+      const { appliance, ustensils, ingredients } = recipes;
+    
+      // Remove duplicates from the ingredients array
+      const uniqueIngredients = [...new Set(ingredients.map(ingredient => ingredient.ingredient))];
+    
+      const filtreIngredient = document.querySelector(".containerIngredient");
+      const containersearchIngredient = document.querySelector(".containerSearchIngredient");
+      const containerListIngredient = document.querySelector(".containerListIngredients");
+    
       const searchFiltre = document.querySelector(".searchFiltre");
-      const filtreAppareils = document.querySelector(".containerAppareils")
-      const containersearchAppareils = document.querySelector(".containerSearchAppareils")
-      const containerListAppareils = document.querySelector(".containerListAppareils")
+      const filtreAppareils = document.querySelector(".containerAppareils");
+      const containersearchAppareils = document.querySelector(".containerSearchAppareils");
+      const containerListAppareils = document.querySelector(".containerListAppareils");
+    
+      const filtreUstensils = document.querySelector(".containerUstensils");
+      const containersearchUstensils = document.querySelector(".containerSearchUstensils");
+      const containerListUstensils = document.querySelector(".containerListUstensils");
+    
+      // Iterate through the unique ingredients array and create a new list for each ingredient
+      uniqueIngredients.forEach((ingredient) => {
+        const ingredientObj = ingredients.find((obj) => obj.ingredient === ingredient);
+        const ulIngredient = document.createElement('ul');
+    
+        // Check if the ingredient already exists in the containerListIngredient
+        const existingIngredient = Array.from(containerListIngredient.children).find((child) => {
+          return child.textContent.trim() === ingredient;
+        });
+    
+        if (!existingIngredient) {
+          const liIngredient = document.createElement('li');
+          liIngredient.classList.add('ingredient-box');
+          liIngredient.textContent = ingredientObj.ingredient;
+          ulIngredient.appendChild(liIngredient);
+    
+          filtreIngredient.appendChild(containersearchIngredient);
+          containersearchIngredient.appendChild(containerListIngredient);
+          containerListIngredient.appendChild(ulIngredient);
+        }
+      });
+    
+      // Remove duplicates from the appliance array
+      const uniqueAppliance = Array.from(new Set(appliance.split(',').map(appliance => appliance.trim()))).join(', ');
+    
+      const ulAppareils = document.createElement('ul');
+    
+      const liAppareils = document.createElement('li');
+      liAppareils.classList.add('appareils-box');
+      liAppareils.textContent = uniqueAppliance;
+      ulAppareils.appendChild(liAppareils);
+    
+      const existingAppliance = Array.from(containerListAppareils.children).find((child) => {
+        return child.textContent.trim() === uniqueAppliance;
+      });
+    
+      if (!existingAppliance) {
+        filtreAppareils.appendChild(containersearchAppareils);
+        containersearchAppareils.appendChild(containerListAppareils);
+        containerListAppareils.appendChild(ulAppareils);
+      }
+    
+      // Remove duplicates from the ustensils array
+      const uniqueUstensils = [...new Set(ustensils.map(ustensil => ustensil))];
+    
+      // Iterate through the unique ustensils array and create a new list for each ustensil
+      uniqueUstensils.forEach((ustensil) => {
+        const ulUstensils = document.createElement('ul');
+    
+        // Check if the ustensil already exists in the containerListUstensils
+        const existingUstensil = Array.from(containerListUstensils.children).find((child) => {
+          return child.textContent.trim() === ustensil;
+        });
+    
+        if (!existingUstensil) {
+          const liUstensils = document.createElement('li');
+          liUstensils.classList.add('ustensils-box');
+          liUstensils.textContent = ustensil;
+          ulUstensils.appendChild(liUstensils);
+    
+          filtreUstensils.appendChild(containersearchUstensils);
+          containersearchUstensils.appendChild(containerListUstensils);
+          containerListUstensils.appendChild(ulUstensils);
+        }
+      });
+    
+    
+    
 
-      const filtreUstensils = document.querySelector(".containerUstensils")
-      const containersearchUstensils = document.querySelector(".containerSearchUstensils")
-      const containerListUstensils = document.querySelector(".containerListUstensils")
 
-      
-      const didi =document.createElement ('div');
-      const ulAppareils = document.createElement("ul")
-      const liAppareils = document.createElement ('li');
-      const ulUstensils = document.createElement ('ul')
-      const liUstensils = document.createElement ('li');
-
-
-
-      liAppareils.classList.add('.appareils-box');
-      liUstensils.classList.add('.ustensils-box');
-
-      
-      liAppareils.textContent = appliance;
-      liUstensils.textContent = ustensils;
-
-
-
-      searchFiltre.appendChild(filtreAppareils)
-      filtreAppareils.appendChild(containersearchAppareils)
-      containersearchAppareils.appendChild(containerListAppareils)
-      containerListAppareils.appendChild(ulAppareils)
-      ulAppareils.appendChild(liAppareils)
-
-
-      filtreUstensils.appendChild(containersearchUstensils)
-      containersearchUstensils.appendChild(containerListUstensils)
-      containerListUstensils.appendChild(ulUstensils)
-      ulUstensils.appendChild(liUstensils)
-
-
-
-
-
-
-      return searchFiltre;
+      return filtreIngredient, filtreAppareils, filtreUstensils;
     }
 
     return {recetteCardDOM, searchinCardDOM}
 
 }
+
+
 
