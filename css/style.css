@@ -5,6 +5,8 @@ body{
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+    background-color: #EDEDED;
+    align-items: center;
     
 }
 main{
@@ -17,7 +19,7 @@ header{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 1440px;
+    width: 100%;
     height: 667px;
 }
 
@@ -87,7 +89,7 @@ input[type="search"] {
   opacity: 1;
 }
 
-.boiteRecette{
+#boiteRecette{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -208,9 +210,11 @@ h2{
 .hide{
  display: none;
 }
-.searchFiltre{
+#searchFiltre{
     display: flex;
     margin-left: 104px;
+    margin-right: 104px;
+    
 }
 .containerAppareils, .containerUstensils, .containerIngredient{
     display: flex;
@@ -315,5 +319,40 @@ input.barFiltre{
 
   .containerListUstensils, .containerListAppareils, .containerListIngredients{
     height: 180px;
-    overflow: hidden;
+    overflow: scroll ;
+    scrollbar-width: none;
   }
+
+.selected{
+    display: flex;
+    background-color: #FFD15B;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16px;
+    font-weight: bold;
+}
+
+.searchClear{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: #FFD15B;
+    height: 17px;
+    width: 17px;
+    font-size: 11px;
+    border-radius: 100%;
+    
+
+}
+
+.nbrArticle{
+    display: flex;
+    align-items: center;
+    font-family: "Anton", sans-serif;
+    font-size: 21px;
+    margin-top: 21px;
+    margin-left: auto;
+}

@@ -1,3 +1,5 @@
+import {assignIdToArticle} from "../pages/index.js"
+
 export function recetteFactory(){
     
     function recetteCardDOM(recipes){
@@ -5,10 +7,13 @@ export function recetteFactory(){
         const picture = `assets/images/${image}`;
 
 
-        const boiteRecette = document.querySelector(".boiteRecette");
+
+        const boiteRecette = document.querySelector("#boiteRecette");
+
         
         
         const article = document.createElement('article');
+        
         const h2 = document.createElement("h2");
         const secRecette = document.createElement('section');
         const secIngredients = document.createElement('section');
@@ -22,6 +27,7 @@ export function recetteFactory(){
         img.setAttribute("src",picture);
         img.setAttribute("alt", `${name} - Recette`)
         
+        
 
         article.classList.add("carteRecette");
         img.classList.add("imageRecette");
@@ -33,7 +39,9 @@ export function recetteFactory(){
         textRecette.classList.add("textRecette");
         divIngredient.classList.add("ingredientDiv");
         timeRecette.classList.add("timePrep");
-        
+
+        const articleId = assignIdToArticle();
+        article.classList.add(`${articleId}`);
         
 
         h2.textContent = name;
@@ -44,6 +52,7 @@ export function recetteFactory(){
 
 
         //boiteRecette.appendChild(article);
+        
         article.appendChild(timeRecette);
         article.appendChild(img);
         article.appendChild(h2);
@@ -79,26 +88,31 @@ export function recetteFactory(){
           recIngredient.appendChild(recQuantite);
           secIngredients.appendChild(divIngredient);
 
+
         
         });
+        
 
-          
+        
+   
 
 
         return article;
     }
 
+
+
     function searchinCardDOM(recipes) {
       const { appliance, ustensils, ingredients } = recipes;
-    
+
+
       // Remove duplicates from the ingredients array
       const uniqueIngredients = [...new Set(ingredients.map(ingredient => ingredient.ingredient))];
-    
+      const searchFiltre = document.querySelector("#searchFiltre")
       const filtreIngredient = document.querySelector(".containerIngredient");
       const containersearchIngredient = document.querySelector(".containerSearchIngredient");
       const containerListIngredient = document.querySelector(".containerListIngredients");
     
-      const searchFiltre = document.querySelector(".searchFiltre");
       const filtreAppareils = document.querySelector(".containerAppareils");
       const containersearchAppareils = document.querySelector(".containerSearchAppareils");
       const containerListAppareils = document.querySelector(".containerListAppareils");
@@ -106,6 +120,9 @@ export function recetteFactory(){
       const filtreUstensils = document.querySelector(".containerUstensils");
       const containersearchUstensils = document.querySelector(".containerSearchUstensils");
       const containerListUstensils = document.querySelector(".containerListUstensils");
+
+
+      
     
       // Iterate through the unique ingredients array and create a new list for each ingredient
       uniqueIngredients.forEach((ingredient) => {
@@ -170,12 +187,10 @@ export function recetteFactory(){
           filtreUstensils.appendChild(containersearchUstensils);
           containersearchUstensils.appendChild(containerListUstensils);
           containerListUstensils.appendChild(ulUstensils);
+          
         }
       });
     
-    
-    
-
 
       return filtreIngredient, filtreAppareils, filtreUstensils;
     }

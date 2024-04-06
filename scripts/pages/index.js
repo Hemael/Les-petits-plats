@@ -3,6 +3,7 @@ import {recipes} from "../utils/recipes.js";
 
 
 
+
 async function getRecette() {
 
   // return recettesData;
@@ -19,7 +20,7 @@ displayDataSearch(recettes);
 
 async function displayData(recettes) {
 
-    const recetteSection = document.querySelector(".boiteRecette");
+    const recetteSection = document.querySelector("#boiteRecette");
 
     recettes.forEach((recettes) => {
         const recetteCard = recetteFactory();
@@ -32,7 +33,7 @@ async function displayData(recettes) {
 
 async function displayDataSearch(recettes) {
     
-  const searchSection = document.querySelector(".searchFiltre");
+  const searchSection = document.querySelector("#searchFiltre");
 
   recettes.forEach((recettes) => {
       const recetteCard = recetteFactory();
@@ -83,6 +84,62 @@ buttons.forEach((button) => {
   });
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('ul');
+  elements.forEach((element) => {
+    element.addEventListener('click', () => {
+      console.log('Element clicked');
+      // Ajoutez ou supprimez la classe 'selected' à l'élément cliqué
+      element.classList.toggle('selected');
+      // Créez un élément 'div' avec la classe 'searchClear' et le texte 'x'
+      const searchClear = document.createElement('div');
+      searchClear.classList.add('searchClear');
+      searchClear.textContent = '🞩';
+      // Ajoutez l'élément 'div' à l'élément 'ul' sélectionné
+      if (element.classList.contains('selected')) {
+        element.appendChild(searchClear);
+      } else {
+        // Supprimez l'élément 'div' de l'élément 'ul' désélectionné
+        const searchClearToRemove = element.querySelector('.searchClear');
+        if (searchClearToRemove) {
+          element.removeChild(searchClearToRemove);
+        }
+      }
+    });
+  });
+});
+
+
+
+let articleCounter = 0;
+
+export function assignIdToArticle() {
+  articleCounter++;
+  return articleCounter;
+}
+
+function createNbrRecettes(articleCounter) {
+  const nbrArticle = document.createElement("div");
+  nbrArticle.classList.add('nbrArticle');
+  nbrArticle.textContent = articleCounter + " recettes";
+  
+  return nbrArticle;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchFiltre = document.querySelector("#searchFiltre");
+  searchFiltre.appendChild(createNbrRecettes(sizeArticleRecettes()));
+
+  function sizeArticleRecettes(){
+    const brecette = document.querySelector("#boiteRecette");
+    const listArticles = brecette.querySelectorAll("article");
+    console.log(listArticles)
+    console.log(brecette)
+
+    return listArticles.length
+  }
+});
 
 init();
 
