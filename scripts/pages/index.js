@@ -85,30 +85,7 @@ buttons.forEach((button) => {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const elements = document.querySelectorAll('ul');
-  elements.forEach((element) => {
-    element.addEventListener('click', () => {
-      console.log('Element clicked');
-      // Ajoutez ou supprimez la classe 'selected' à l'élément cliqué
-      element.classList.toggle('selected');
-      // Créez un élément 'div' avec la classe 'searchClear' et le texte 'x'
-      const searchClear = document.createElement('div');
-      searchClear.classList.add('searchClear');
-      searchClear.textContent = '🞩';
-      // Ajoutez l'élément 'div' à l'élément 'ul' sélectionné
-      if (element.classList.contains('selected')) {
-        element.appendChild(searchClear);
-      } else {
-        // Supprimez l'élément 'div' de l'élément 'ul' désélectionné
-        const searchClearToRemove = element.querySelector('.searchClear');
-        if (searchClearToRemove) {
-          element.removeChild(searchClearToRemove);
-        }
-      }
-    });
-  });
-});
+
 
 
 
@@ -140,6 +117,75 @@ document.addEventListener('DOMContentLoaded', () => {
     return listArticles.length
   }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('ul');
+  const selectRecette = document.getElementById('selectRecette');
+
+  elements.forEach((element, index) => {
+    element.setAttribute('data-ul', index);
+    element.addEventListener('click', () => {
+      console.log('Element clicked');
+      // Ajoutez ou supprimez la classe 'selected' à l'élément cliqué
+      element.classList.toggle('selected');
+
+      // Créez un élément 'div' avec la classe 'searchClear' et le texte 'x'
+      const searchClear = document.createElement('div');
+      searchClear.classList.add('searchClear');
+      searchClear.textContent = '🞩';
+
+      // Si l'élément est sélectionné, ajoutez l'élément 'div' à l'élément 'ul'
+      if (element.classList.contains('selected')) {
+        element.appendChild(searchClear);
+
+        // Créez un élément 'div' avec la classe 'selectedItem' et le texte de l'élément sélectionné
+        const selectedItem = document.createElement('div');
+        selectedItem.classList.add('selectedItem');
+        selectedItem.textContent = element.textContent;
+
+        // Ajoutez l'élément 'div' à l'élément 'div' avec l'id 'selectRecette'
+        selectRecette.appendChild(selectedItem);
+
+        // Ajoutez un écouteur d'événements au div avec la classe 'selectedItem'
+        const selectedItemToRemove = selectRecette.querySelector('.selectedItem:last-child');
+        if (selectedItemToRemove) {
+          selectedItemToRemove.addEventListener('click', () => {
+            console.log('Selected item clicked');
+            // Supprimez l'élément 'div' correspondant à l'élément désélectionné de l'élément 'div' avec l'id 'selectRecette'
+            selectRecette.removeChild(selectedItemToRemove);
+
+            // Supprimez la classe 'selected' de l'élément 'ul'
+            const selectedElement = Array.from(elements).filter((el) => el.textContent === selectedItemToRemove.textContent)[0];
+            if (selectedElement) {
+              selectedElement.classList.remove('selected');
+            }
+
+            // Supprimez l'élément 'div' de l'élément 'ul'
+            const searchClearToRemove = selectedElement.querySelector('.searchClear');
+            if (searchClearToRemove) {
+              selectedElement.removeChild(searchClearToRemove);
+            }
+          });
+        }
+      } else {
+        // Supprimez l'élément 'div' de l'élément 'ul'
+        const searchClearToRemove = element.querySelector('.searchClear');
+        if (searchClearToRemove) {
+          element.removeChild(searchClearToRemove);
+        }
+
+        // Supprimez l'élément 'div' correspondant à l'élément désélectionné de l'élément 'div' avec l'id 'selectRecette'
+        const selectedItemToRemove = selectRecette.querySelector('.selectedItem:last-child');
+        if (selectedItemToRemove) {
+          selectRecette.removeChild(selectedItemToRemove);
+        }
+      }
+    });
+  });
+});
+
 
 init();
 
