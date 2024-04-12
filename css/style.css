@@ -355,6 +355,7 @@ input.barFiltre{
     font-size: 21px;
     margin-top: 21px;
     margin-left: auto;
+    order: 4;
 }
 
 .selectedItem{

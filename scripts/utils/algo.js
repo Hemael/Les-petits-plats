@@ -7,7 +7,8 @@ export function assignIdToArticle() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchFiltre = document.querySelector("#searchFiltre");
-  searchFiltre.appendChild(createNbrRecettes(sizeArticleRecettes()));
+  const nbrRecettes = createNbrRecettes(sizeArticleRecettes());
+  searchFiltre.appendChild(nbrRecettes);
 
   const selectRecette = document.getElementById('selectRecette');
   const elements = document.querySelectorAll('ul');
@@ -52,8 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createNbrRecettes(articleCounter) {
-    const nbrArticle = document.createElement("div");
-    nbrArticle.classList.add('nbrArticle');
+    let nbrArticle = document.querySelector('.nbrArticle');
+    if (!nbrArticle) {
+      nbrArticle = document.createElement("div");
+      nbrArticle.classList.add('nbrArticle');
+      searchFiltre.appendChild(nbrArticle);
+    }
     nbrArticle.textContent = `${articleCounter} recettes`;
     return nbrArticle;
   }
@@ -113,16 +118,36 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateArticles() {
     const selectedItems = Array.from(selectRecette.children);
     const selectedCriteria = selectedItems.map(item => item.textContent.replace("x", '').trim().toLowerCase());
-
+  
     if (selectedCriteria.length === 0) {
+      // Aucun critère sélectionné, réinitialiser l'affichage des articles
       resetArticleDisplay();
+      updateNbrRecettesDisplay();
       return;
     }
-
-    articles.forEach((article) => {
+  
+    articles.forEach(article => {
       const articleText = article.textContent.toLowerCase();
-      const isArticleMatching = selectedCriteria.some(criterion => articleText.includes(criterion));
+      const isArticleMatching = selectedCriteria.every(criterion => articleText.includes(criterion));
       article.style.display = isArticleMatching ? 'flex' : 'none';
     });
+  
+    updateNbrRecettesDisplay();
   }
+  
+  function updateNbrRecettesDisplay() {
+    const { count } = countVisibleArticles();
+    const nbrArticle = document.querySelector('.nbrArticle');
+    if (nbrArticle) {
+      nbrArticle.textContent = `${count} recettes`;
+      articleCounter = count;
+    }
+  }
+  
+  function countVisibleArticles() {
+    const visibleArticles = document.querySelectorAll('#boiteRecette article:not([style*="display: none"])');
+    return { count: visibleArticles.length, articles: visibleArticles };
+  }
+
 });
+
