@@ -356,3 +356,27 @@ input.barFiltre{
     margin-top: 21px;
     margin-left: auto;
 }
+
+.selectedItem{
+    display: flex;
+    background-color: #FFD15B;
+    padding: 16px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#selectRecette{
+    margin-left: 104px;
+    margin-top: 21px;
+    display: flex;
+    flex-direction: row;
+}
+
+.itemx{
+    padding-left: 15px;
+}
+
+li .selected{
+    background-color: none;
+    color: none;
+}
