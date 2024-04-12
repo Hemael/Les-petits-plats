@@ -1,13 +1,9 @@
-
-
 let articleCounter = 0;
 
 export function assignIdToArticle() {
   articleCounter++;
   return articleCounter;
 }
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchFiltre = document.querySelector("#searchFiltre");
@@ -19,24 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const selectedItemsMap = new Map();
 
-  
-
   elements.forEach((element) => {
     element.addEventListener('click', () => {
       toggleSelection(element);
-
-      // Récupérer le critère de tri depuis le texte de l'élément <ul> sélectionné
-      const criterion = element.textContent.replace("🞩", '').trim().toLowerCase();
-
-      // Filtrer les articles en fonction du critère sélectionné
-      articles.forEach((article) => {
-        const articleCategory = article.getAttribute('data-category').toLowerCase();
-        if (criterion === 'tous' || articleCategory === criterion) {
-          article.style.display = 'block';
-        } else {
-          article.style.display = 'flex';
-        }
-      });
+      updateArticles();
     });
   });
 
@@ -61,6 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       removeSearchClear(element);
     }
+  }
+
+  function resetArticleDisplay() {
+    articles.forEach((article) => {
+      article.style.display = 'flex';
+    });
   }
 
   function createNbrRecettes(articleCounter) {
@@ -112,11 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.classList.remove('selected');
     removeSearchClear(element);
     selectedItemsMap.delete(element);
-
-    // Rétablir l'affichage de tous les articles
-    articles.forEach((article) => {
-      article.style.display = 'flex';
-    });
+    resetArticleDisplay(); // Réafficher toutes les recettes
   }
 
   function removeSearchClear(element) {
@@ -125,8 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
       element.removeChild(searchClearToRemove);
     }
   }
+
+  function updateArticles() {
+    const selectedItems = Array.from(selectRecette.children);
+    const selectedCriteria = selectedItems.map(item => item.textContent.replace("x", '').trim().toLowerCase());
+
+    if (selectedCriteria.length === 0) {
+      resetArticleDisplay();
+      return;
+    }
+
+    articles.forEach((article) => {
+      const articleText = article.textContent.toLowerCase();
+      const isArticleMatching = selectedCriteria.some(criterion => articleText.includes(criterion));
+      article.style.display = isArticleMatching ? 'flex' : 'none';
+    });
+  }
 });
-
-
-
-
