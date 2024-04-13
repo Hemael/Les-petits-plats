@@ -318,12 +318,12 @@ input.barFiltre{
   }
 
   .containerListUstensils, .containerListAppareils, .containerListIngredients{
-    height: 180px;
+    max-height: 180px;
     overflow: scroll ;
     scrollbar-width: none;
   }
 
-.selected{
+ul.selected{
     display: flex;
     background-color: #FFD15B;
     padding-top: 9px;

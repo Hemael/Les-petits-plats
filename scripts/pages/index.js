@@ -1,5 +1,8 @@
-import {recipesFactory } from "../factories/recipesFactory.js"
+import {recipesFactory} from "../factories/recipesFactory.js"
 import {recipes} from "../utils/recipes.js";
+
+
+
 
 
 async function getRecette() {
@@ -81,7 +84,6 @@ buttons.forEach((button) => {
     }
   });
 });
-
 
 
 init();

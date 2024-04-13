@@ -1,91 +1,122 @@
-import {assignIdToArticle} from "../utils/algo.js"
+import { assignIdToArticle } from '../utils/algo.js';
 
+export let filterData = [];
 export function recipesFactory(){
     
-    function recetteCardDOM(recipes){
-        const { image, name, description, time } = recipes;
-        const picture = `assets/images/${image}`;
+  // Create an empty array to store filter data
 
-      
-        const article = document.createElement('article');
-        
-        const h2 = document.createElement("h2");
-        const secRecette = document.createElement('section');
-        const secIngredients = document.createElement('section');
-        const titreRecette = document.createElement("h3");
-        const titreIngredients = document.createElement("h3");
-        const textRecette = document.createElement("p");
-        const divIngredient = document.createElement("div");
-        const timeRecette = document.createElement("div");
-        
-        const img =document.createElement('img');
-        img.setAttribute("src",picture);
-        img.setAttribute("alt", `${name} - Recette`)
-        
-        article.classList.add("carteRecette");
-        img.classList.add("imageRecette");
-        h2.classList.add("titreRecette");
-        secRecette.classList.add("secRecette");
-        secIngredients.classList.add("secIngredients");
-        titreIngredients.classList.add("titreCategorie");
-        titreRecette.classList.add("titreCategorie");
-        textRecette.classList.add("textRecette");
-        divIngredient.classList.add("ingredientDiv");
-        timeRecette.classList.add("timePrep");
 
-        const articleId = assignIdToArticle();
-        article.classList.add(`${articleId}`);
-        
+  function recetteCardDOM(recipes){
+      const { image, name, description, time } = recipes;
+      const picture = `assets/images/${image}`;
 
-        h2.textContent = name;
-        titreRecette.textContent ="RECETTE";
-        titreIngredients.textContent = "INGRÉDIENTS";
-        textRecette.textContent = description;
-        timeRecette.textContent = time + " min";
-
-        article.appendChild(timeRecette);
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(secRecette);
-        article.appendChild(secIngredients);
-        secRecette.appendChild(titreRecette);
-        secRecette.appendChild(textRecette)
-        secIngredients.appendChild(titreIngredients);
-           
-        recipes.ingredients.forEach((ingredientObj) => {
-          const recIngredient = document.createElement("p");      
-          const recQuantite = document.createElement("p"); 
-
-          
-          recIngredient.classList.add("ingredient"); 
-          recQuantite.classList.add("quantite");  
-
-          recIngredient.textContent = ingredientObj.ingredient;
-          
-          let quantityText = ingredientObj.quantity;
-        
-          if (ingredientObj.unit) {
-            quantityText += ` ${ingredientObj.unit}`;
-          }
-        
-          recQuantite.textContent = quantityText;
-          
-          divIngredient.appendChild(recIngredient);
-          recIngredient.appendChild(recQuantite);
-          secIngredients.appendChild(divIngredient);
     
-        });
-        
-        return article;
-    }
+      const article = document.createElement('article');
+      
+      const h2 = document.createElement("h2");
+      const secRecette = document.createElement('section');
+      const secIngredients = document.createElement('section');
+      const titreRecette = document.createElement("h3");
+      const titreIngredients = document.createElement("h3");
+      const textRecette = document.createElement("p");
+      const divIngredient = document.createElement("div");
+      const timeRecette = document.createElement("div");
+      
+      const img =document.createElement('img');
+      img.setAttribute("src",picture);
+      img.setAttribute("alt", `${name} - Recette`)
+      
+      
+      article.classList.add("carteRecette");
+      img.classList.add("imageRecette");
+      h2.classList.add("titreRecette");
+      secRecette.classList.add("secRecette");
+      secIngredients.classList.add("secIngredients");
+      titreIngredients.classList.add("titreCategorie");
+      titreRecette.classList.add("titreCategorie");
+      textRecette.classList.add("textRecette");
+      divIngredient.classList.add("ingredientDiv");
+      timeRecette.classList.add("timePrep");
 
+      const articleId = assignIdToArticle();
+      article.classList.add(`${articleId}`);
+      article.setAttribute('id', articleId);
+      
+
+      h2.textContent = name;
+      titreRecette.textContent ="RECETTE";
+      titreIngredients.textContent = "INGRÉDIENTS";
+      textRecette.textContent = description;
+      timeRecette.textContent = time + " min";
+
+      article.appendChild(timeRecette);
+      article.appendChild(img);
+      article.appendChild(h2);
+      article.appendChild(secRecette);
+      article.appendChild(secIngredients);
+      secRecette.appendChild(titreRecette);
+      secRecette.appendChild(textRecette)
+      secIngredients.appendChild(titreIngredients);
+         
+      recipes.ingredients.forEach((ingredientObj) => {
+        const recIngredient = document.createElement("p");      
+        const recQuantite = document.createElement("p"); 
+
+        
+        recIngredient.classList.add("ingredient"); 
+        recQuantite.classList.add("quantite");  
+
+        recIngredient.textContent = ingredientObj.ingredient;
+        
+        let quantityText = ingredientObj.quantity;
+      
+        if (ingredientObj.unit) {
+          quantityText += ` ${ingredientObj.unit}`;
+        }
+      
+        recQuantite.textContent = quantityText;
+        
+        divIngredient.appendChild(recIngredient);
+        recIngredient.appendChild(recQuantite);
+        secIngredients.appendChild(divIngredient);
+        article.dataset.recipeId = articleId;
+
+
+  
+      });
+
+      let tmpArray = [];
+      tmpArray = {
+
+        id: recipes.id,
+    
+        appliance: recipes.appliance,
+    
+        ustensils: recipes.ustensils.map(ustensil => ustensil.trim()),
+  
+        ingredients: recipes.ingredients.map(ingredient => ingredient.ingredient.trim())
+    
+      }
+      
+      filterData.push(tmpArray);
+      
+     
+      article.dataset.filterData = JSON.stringify(tmpArray);
+      article.setAttribute('id', articleId);
+
+      return article;
+  }
+
+    function capitalizeFirstLetter(string){
+      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    }
     function searchinCardDOM(recipes) {
       const { appliance, ustensils, ingredients } = recipes;
 
 
-      // Remove duplicates from the ingredients array
-      const uniqueIngredients = [...new Set(ingredients.map(ingredient => ingredient.ingredient))];
-
+      // Remove duplicates from the ingredients array string.charAt(0).toUpperCase() + string.slice(1);
+      let lowercaseIngredients = ingredients.map(ingredient => capitalizeFirstLetter(ingredient.ingredient));
+      const uniqueIngredients = [...new Set(lowercaseIngredients)];
       const filtreIngredient = document.querySelector(".containerIngredient");
       const containersearchIngredient = document.querySelector(".containerSearchIngredient");
       const containerListIngredient = document.querySelector(".containerListIngredients");
@@ -101,7 +132,7 @@ export function recipesFactory(){
 
       // Iterate through the unique ingredients array and create a new list for each ingredient
       uniqueIngredients.forEach((ingredient) => {
-        const ingredientObj = ingredients.find((obj) => obj.ingredient === ingredient);
+        const ingredientObj = ingredients.find((obj) => capitalizeFirstLetter(obj.ingredient) === ingredient);
         const ulIngredient = document.createElement('ul');
     
         // Check if the ingredient already exists in the containerListIngredient
@@ -112,7 +143,7 @@ export function recipesFactory(){
         if (!existingIngredient) {
           const liIngredient = document.createElement('li');
           liIngredient.classList.add('ingredient-box');
-          liIngredient.textContent = ingredientObj.ingredient;
+          liIngredient.textContent = capitalizeFirstLetter(ingredientObj.ingredient);
           ulIngredient.appendChild(liIngredient);
     
           filtreIngredient.appendChild(containersearchIngredient);
@@ -122,7 +153,7 @@ export function recipesFactory(){
       });
     
       // Remove duplicates from the appliance array
-      const uniqueAppliance = Array.from(new Set(appliance.split(',').map(appliance => appliance.trim()))).join(', ');
+      const uniqueAppliance = Array.from(new Set(appliance.split(',').map(appliance => capitalizeFirstLetter(appliance.trim())))).join(', ');
     
       const ulAppareils = document.createElement('ul');
     
@@ -132,7 +163,7 @@ export function recipesFactory(){
       ulAppareils.appendChild(liAppareils);
     
       const existingAppliance = Array.from(containerListAppareils.children).find((child) => {
-        return child.textContent.trim() === uniqueAppliance;
+        return capitalizeFirstLetter(child.textContent.trim()) === uniqueAppliance;
       });
     
       if (!existingAppliance) {
@@ -142,7 +173,7 @@ export function recipesFactory(){
       }
     
       // Remove duplicates from the ustensils array
-      const uniqueUstensils = [...new Set(ustensils.map(ustensil => ustensil))];
+      const uniqueUstensils = [...new Set(ustensils.map(ustensil => capitalizeFirstLetter(ustensil)))];
     
       // Iterate through the unique ustensils array and create a new list for each ustensil
       uniqueUstensils.forEach((ustensil) => {
@@ -165,14 +196,15 @@ export function recipesFactory(){
           
         }
       });
+
+
     
 
       return filtreIngredient, filtreAppareils, filtreUstensils;
     }
+  
+  
 
     return {recetteCardDOM, searchinCardDOM}
 
 }
-
-
-
