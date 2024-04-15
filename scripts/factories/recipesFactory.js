@@ -1,4 +1,5 @@
 import { assignIdToArticle } from '../utils/algo.js';
+import { capitalizeFirstLetter } from '../pages/index.js';
 
 export let filterData = [];
 export function recipesFactory(){
@@ -87,29 +88,20 @@ export function recipesFactory(){
 
       let tmpArray = [];
       tmpArray = {
-
         id: recipes.id,
-    
         appliance: recipes.appliance,
-    
         ustensils: recipes.ustensils.map(ustensil => ustensil.trim()),
-  
-        ingredients: recipes.ingredients.map(ingredient => ingredient.ingredient.trim())
-    
+        ingredients: recipes.ingredients.map(ingredient => ingredient.ingredient.trim())    
       }
       
       filterData.push(tmpArray);
-      
-     
       article.dataset.filterData = JSON.stringify(tmpArray);
       article.setAttribute('id', articleId);
 
       return article;
   }
 
-    function capitalizeFirstLetter(string){
-      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-    }
+
     function searchinCardDOM(recipes) {
       const { appliance, ustensils, ingredients } = recipes;
 
@@ -154,9 +146,7 @@ export function recipesFactory(){
     
       // Remove duplicates from the appliance array
       const uniqueAppliance = Array.from(new Set(appliance.split(',').map(appliance => capitalizeFirstLetter(appliance.trim())))).join(', ');
-    
       const ulAppareils = document.createElement('ul');
-    
       const liAppareils = document.createElement('li');
       liAppareils.classList.add('appareils-box');
       liAppareils.textContent = uniqueAppliance;
@@ -165,7 +155,6 @@ export function recipesFactory(){
       const existingAppliance = Array.from(containerListAppareils.children).find((child) => {
         return capitalizeFirstLetter(child.textContent.trim()) === uniqueAppliance;
       });
-    
       if (!existingAppliance) {
         filtreAppareils.appendChild(containersearchAppareils);
         containersearchAppareils.appendChild(containerListAppareils);
@@ -196,15 +185,8 @@ export function recipesFactory(){
           
         }
       });
-
-
-    
-
       return filtreIngredient, filtreAppareils, filtreUstensils;
     }
-  
-  
-
     return {recetteCardDOM, searchinCardDOM}
 
 }

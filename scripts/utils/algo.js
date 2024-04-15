@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Permet de sélectionner un élément dans la liste
   function toggleSelection(element) {
     const isSelected = element.classList.contains("selected");
 
@@ -134,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Définition de updateNbrRecettesDisplay()
+  // Met à jour le compteur de recettes
   function updateNbrRecettesDisplay(count) {
     const nbrArticle = document.querySelector(".nbrArticle");
     if (nbrArticle) {
@@ -143,23 +144,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Définition de updateArticles()
+  // Met a jour les recettes sélectionné avec les tags
   function updateArticles() {
+
     const selectedItems = Array.from(selectRecette.children);
     const selectedValues = selectedItems
       .filter((item) => item.tagName === "DIV" && item.classList.contains("selectedItem"))
       .map((item) => item.textContent.replace("✕", "").trim().toLowerCase());
 
-
-    // If no criteria is selected, display all recipes
+    // Si aucun tag selectionner, affiche tous les tags
     if (selectedValues.length === 0) {
-      // @todo remettre les tags display: none en visible
       resetArticleDisplay();
-      updateNbrRecettesDisplay(filterData.length); // Update the counter with 0 recipes
+      updateNbrRecettesDisplay(filterData.length); // Met à jour le compteur de recettes
+      // Affiche  tous les tags
+      const ingredientListItems = document.querySelectorAll(".containerListIngredients li");
+      ingredientListItems.forEach((item) => {
+        item.style.display = "list-item";
+      });
+      const applianceListItems = document.querySelectorAll(".containerListAppareils li");
+      applianceListItems.forEach((item) => {
+        item.style.display = "list-item";
+      });
+      const ustensilListItems = document.querySelectorAll(".containerListUstensils li"); 
+      ustensilListItems.forEach((item) => {
+        item.style.display = "list-item";
+      });
       return;
     }
 
-
+    // Sort les recettes en fonction des critères sélectionnés
     var selectedData = filterData;
     selectedValues.forEach(function(check){
       check = check.toLowerCase();
@@ -175,26 +188,57 @@ document.addEventListener("DOMContentLoaded", () => {
       })
 
     })
-    //console.log(selectedData)  @Todo Ici, pensé à rajouté la gestion des tags à exclure en fonction de ce qu'il reste dans selectedData
-    
-
-
-    // Hide all articles before displaying the matching ones
-    articles.forEach((article) => {
+    // Cache tous les articles avant d'afficher
+     articles.forEach((article) => {
       article.style.display = "none";
     });
 
-    // Display the matching articles
+    // Affiche ce qui match avec les articles sélectionnés
     selectedData.forEach((article) => {
       const articleElement = document.getElementById(`${article.id}`);
       articleElement.style.display = "flex";
     });
 
+    // Met a jour les listes en fonction de ce qui est selectionné
+    const ingredientList = document.querySelector(".containerListIngredients");
+    hideNonMatchingListItems(ingredientList, selectedData);
+    const applianceList = document.querySelector(".containerListAppareils");
+    hideNonMatchingListItems(applianceList, selectedData);
+    const ustensilList = document.querySelector(".containerListUstensils");
+    hideNonMatchingListItems(ustensilList, selectedData);
     const visibleArticlesCount = selectedData.length;
-    updateNbrRecettesDisplay(visibleArticlesCount); // Update the counter of displayed recipes
+    updateNbrRecettesDisplay(visibleArticlesCount); 
+
   }
 
-  // Function to connect filters to their corresponding container lists
+  // Gestion des ListItems
+  function hideNonMatchingListItems(list, selectedData) {
+
+    const listItems = list.querySelectorAll('li');
+    listItems.forEach((item) => {
+      const itemValue = item.textContent.trim().toLowerCase();
+      const ingredientsMatch = selectedData.some((data) =>
+        data.ingredients.some((ingredient) => ingredient.toLowerCase() === itemValue)
+     );
+
+      const applianceMatch = selectedData.some((data) =>
+        data.appliance.toLowerCase() === itemValue
+      );
+
+      const utensilsMatch = selectedData.some((data) =>
+        data.ustensils.some((utensil) => utensil.toLowerCase() === itemValue)
+      );
+
+      if (!ingredientsMatch && !applianceMatch && !utensilsMatch) {
+        item.style.display = "none";
+      } else {
+        item.style.display = "list-item";
+      }
+    });
+
+  }
+
+  // Connecte les boutons de filtres avec les containers
   function connectFiltersToContainers() {
     const filterTypes = ['ingredients', 'appareils', 'ustensils'];
 
@@ -209,59 +253,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Function to filter container lists based on the search term
-  function filterContainerList(container, searchTerm) {
-    const listItems = container.querySelectorAll('li');
-    const searchClear = container.querySelector('.searchClear');
+  // Filtre la liste des recettes en fonction de la recherche
+function filterContainerList(container, searchTerm) {
+  const listItems = container.querySelectorAll('li');
+  const searchClear = container.querySelector('.searchClear');
 
-    if (searchClear) {
-      searchClear.style.display = 'flex';
-    }
-
-    if (searchTerm === '') {
-      // If the search term is empty, show all list items
-      listItems.forEach(item => {
-        item.parentNode.style.display = 'flex';
-        item.parentNode.classList.remove('hidden');
-      });
-      container.style.display = 'block'; // Show the container
-      container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
-    } else {
-      // Filter list items based on the search term
-      listItems.forEach(item => {
-        const itemText = item.textContent.trim().toLowerCase();
-
-        if (itemText.includes(searchTerm)) {
-          item.parentNode.style.display = 'flex'; // Show the matching item
-          item.parentNode.classList.remove('hidden'); // Reset the "hidden" class
-        } else {
-          item.parentNode.style.display = 'none'; // Hide the non-matching item
-        }
-      });
-
-      // Check if there are any visible items in the container
-      const visibleItems = Array.from(listItems).filter(item => item.style.display !== 'none');
-      if (visibleItems.length > 0) {
-        container.style.display = 'block'; // Show the container if there are visible items
-        container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
-      } else {
-        container.style.display = 'none'; // Hide thecontainer if there are no visible items
-        container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
-        if (searchClear) {
-          searchClear.style.display = 'none';
-        }
-      }
-    }
+  if (searchClear) {
+    searchClear.style.display = 'flex';
   }
 
-  // Function to capitalize the first letter of a string
+  if (searchTerm === '') {
+    // If the search term is empty, show all list items
+    listItems.forEach(item => {
+      item.parentNode.style.display = '';
+      item.parentNode.classList.remove('hidden');
+    });
+    container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
+  } else {
+    // Filter list items based on the search term
+    listItems.forEach(item => {
+      const itemText = item.textContent.trim().toLowerCase();
+
+      if (itemText.includes(searchTerm)) {
+        item.parentNode.style.display = 'flex'; // Show the matching item
+        item.parentNode.classList.remove('hidden'); // Reset the "hidden" class
+      } else {
+        item.parentNode.style.display = 'none'; // Hide the non-matching item
+      }
+    });
+
+    // Check if there are any visible items in the container
+    const visibleItems = Array.from(listItems).filter(item => item.style.display !== 'none');
+    if (visibleItems.length > 0) {
+      container.style.display = 'block'; // Show the container if there are visible items
+      container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
+    } else {
+      container.style.display = 'none'; // Hide thecontainer if there are no visible items
+      container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
+      if (searchClear) {
+        searchClear.style.display = 'none';
+      }
+    }
+
+    // Update the articles based on the filtered data
+    updateArticles();
+  }
+}
+
+  // Met en capitale le premier caractère de la chaine
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   // Call the function to connect filters to their corresponding container lists
   connectFiltersToContainers();
-
-  // Add a check to prevent duplicates from being added to the selectedItemsMap
-
+  
 });
