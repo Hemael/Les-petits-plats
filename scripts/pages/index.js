@@ -60,24 +60,6 @@ document.querySelectorAll('.openItem').forEach((item) => {
   });
 });
 
-// Obtenez tous les éléments avec la classe 'iconSearch' et ajoutez un écouteur d'événement click à chacun d'eux
-document.querySelectorAll('.iconSearch').forEach((item) => {
-  item.addEventListener('click', function() {
-      // Appelez la fonction 'filtre' avec le type de données et la valeur de filtre appropriés pour le conteneur actuel
-      filtre(item.getAttribute('data-type'), item.parentNode.previousElementSibling.value);
-  });
-});
-
-function filtre(type, value) {
-  // Obtenez tous les éléments avec la classe qui correspond au type de données et basculez la classe 'hide' en fonction de savoir s'ils incluent la valeur de filtre
-  document.querySelectorAll(`.${type}-box`).forEach((item) => {
-      if (item.innerHTML.includes(value)) {
-          item.classList.remove('hide');
-      } else {
-          item.classList.add('hide');
-      }
-  });
-}
 
 const buttons = document.querySelectorAll('.filtreClear, .buttonClear');
 buttons.forEach((button) => {
@@ -93,6 +75,44 @@ buttons.forEach((button) => {
 export function capitalizeFirstLetter(string){
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const containers = document.querySelectorAll('.containerIngredient, .containerAppareils, .containerUstensils');
+
+  containers.forEach(function(container) {
+      const input = container.querySelector('.barFiltre');
+      const inconSearch = container.querySelector('#iconSearch');
+
+      // Fonction pour vérifier le contenu de l'input et masquer l'icône si nécessaire
+      function checkAndHideInconSearch() {
+          if (input.value.trim() === '') {
+              inconSearch.style.opacity = '1'; // Affiche l'icône si l'input est vide
+          } else {
+              inconSearch.style.opacity = '0'; // Cache l'icône si l'input contient du texte
+          }
+      }
+
+      // Écoute l'événement de focus sur l'input
+      input.addEventListener('focus', function() {
+          checkAndHideInconSearch();
+      });
+
+      // Écoute l'événement de blur sur l'input
+      input.addEventListener('blur', function() {
+          checkAndHideInconSearch();
+      });
+
+      // Écoute l'événement de saisie (input) sur l'input
+      input.addEventListener('input', function() {
+          checkAndHideInconSearch();
+      });
+
+      // Vérifie l'état initial de l'input au chargement de la page
+      checkAndHideInconSearch();
+  });
+});
+
+
 
 
 

@@ -115,15 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function addRemoveListeners(selectedItem, element) {
-    // Handle click on the selected item itself
+
     selectedItem.addEventListener("click", () => {
       removeSelectedItem(selectedItem, element);
     });
-
-    // Handle click on the 'x' button within the selected item
     const itemX = selectedItem.querySelector(".itemx");
     itemX.addEventListener("click", (event) => {
-      event.stopPropagation(); // Prevent the click from bubbling up to the parent
+      event.stopPropagation(); 
       removeSelectedItem(selectedItem, element);
     });
   }
@@ -259,7 +257,7 @@ function filterContainerList(container, searchTerm) {
   const searchClear = container.querySelector('.searchClear');
 
   if (searchClear) {
-    searchClear.style.display = 'flex';
+    searchClear.style.display = '';
   }
 
   if (searchTerm === '') {
@@ -275,7 +273,7 @@ function filterContainerList(container, searchTerm) {
       const itemText = item.textContent.trim().toLowerCase();
 
       if (itemText.includes(searchTerm)) {
-        item.parentNode.style.display = 'flex'; // Show the matching item
+        item.parentNode.style.display = ''; // Show the matching item
         item.parentNode.classList.remove('hidden'); // Reset the "hidden" class
       } else {
         item.parentNode.style.display = 'none'; // Hide the non-matching item
@@ -305,7 +303,7 @@ function filterContainerList(container, searchTerm) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // Call the function to connect filters to their corresponding container lists
+
   connectFiltersToContainers();
   
 });

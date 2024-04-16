@@ -274,11 +274,19 @@ h2{
     border: none;
     color: #7A7A7A;
 }
+.filtreClear .fal{
+    margin-right: -44px;
+}
+.buttonFiltre .fal{
+    margin-right: -45px;
+    
+}
 .filtreSearch{
     display: flex;
     justify-content: center;
     margin-bottom: 24px;
     margin-top: 14px;
+    margin-left: -3pxpx;
 }
 
 .filtreClear{
