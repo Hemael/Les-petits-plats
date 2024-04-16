@@ -135,13 +135,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Met à jour le compteur de recettes
   function updateNbrRecettesDisplay(count) {
+
     const nbrArticle = document.querySelector(".nbrArticle");
+  
     if (nbrArticle) {
       nbrArticle.textContent = `${count} recettes`;
       // Autres actions à effectuer en fonction de count
     }
+    // Vérification si le compteur est à zéro pour afficher le message d'erreur
+    if (count === 0) {
+      createError();
+    }
   }
 
+  function createError(){
+    const boite = document.querySelector(".boiteRecette");
+    const error = document.createElement("p");
+    error.classList.add("error");
+    error.textContent = "Aucune recette correspondante vous pouvez chercher un ingrédient, un appareil ou un ustensil";
+    boite.appendChild(error);
+    return error;
+  }
+  
   // Met a jour les recettes sélectionné avec les tags
   function updateArticles() {
 
@@ -302,8 +317,12 @@ function filterContainerList(container, searchTerm) {
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+  
 
 
   connectFiltersToContainers();
+
+  
   
 });
+

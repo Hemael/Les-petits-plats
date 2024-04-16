@@ -22,7 +22,7 @@ async function displayData(recettes) {
 
 }
 
-async function displayDataSearch(recettes) {   
+export async function displayDataSearch(recettes) {   
   const searchSection = document.querySelector("#searchFiltre");
 
   recettes.forEach((recettes) => {

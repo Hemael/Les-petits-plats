@@ -90,6 +90,7 @@ export function recipesFactory(){
       tmpArray = {
         id: recipes.id,
         appliance: recipes.appliance,
+        name: recipes.name,
         ustensils: recipes.ustensils.map(ustensil => ustensil.trim()),
         ingredients: recipes.ingredients.map(ingredient => ingredient.ingredient.trim())    
       }
