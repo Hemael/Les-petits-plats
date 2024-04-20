@@ -68,6 +68,7 @@ buttons.forEach((button) => {
     if (input && input.tagName.toLowerCase() === 'input') {
       input.value = "";
       input.dispatchEvent(new Event('input'));
+      input.dispatchEvent(new Event('keyup'));
     }
   });
 });
@@ -111,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
       checkAndHideInconSearch();
   });
 });
-
 
 
 

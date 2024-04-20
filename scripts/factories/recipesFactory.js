@@ -91,6 +91,7 @@ export function recipesFactory(){
         id: recipes.id,
         appliance: recipes.appliance,
         name: recipes.name,
+        description: recipes.description,
         ustensils: recipes.ustensils.map(ustensil => ustensil.trim()),
         ingredients: recipes.ingredients.map(ingredient => ingredient.ingredient.trim())    
       }
