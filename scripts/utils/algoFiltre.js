@@ -108,7 +108,6 @@ function filterWithSearch(selectedData, search) {
     return selectedData;
 }
 
-
 function applyResultFilter(selectedData){
 // Affiche ce qui match avec les articles sélectionnés
     selectedData.forEach((article) => {
@@ -154,7 +153,6 @@ function hideNonMatchingListItems(list, selectedData) {
     });
 
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     selectRecette = document.getElementById("selectRecette");
