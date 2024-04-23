@@ -159,5 +159,5 @@ function hideNonMatchingListItems(list, selectedData) {
 document.addEventListener("DOMContentLoaded", () => {
     selectRecette = document.getElementById("selectRecette");
     articles = document.querySelectorAll("#boiteRecette article");
-    });
+});
     
