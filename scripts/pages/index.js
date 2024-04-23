@@ -81,36 +81,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const containers = document.querySelectorAll('.containerIngredient, .containerAppareils, .containerUstensils');
 
   containers.forEach(function(container) {
-      const input = container.querySelector('.barFiltre');
-      const inconSearch = container.querySelector('#iconSearch');
+    const input = container.querySelector('.barFiltre');
+    const inconSearch = container.querySelector('#iconSearch');
 
-      // Fonction pour vérifier le contenu de l'input et masquer l'icône si nécessaire
-      function checkAndHideInconSearch() {
-          if (input.value.trim() === '') {
-              inconSearch.style.opacity = '1'; // Affiche l'icône si l'input est vide
-          } else {
-              inconSearch.style.opacity = '0'; // Cache l'icône si l'input contient du texte
-          }
+    // Fonction pour vérifier le contenu de l'input et masquer l'icône si nécessaire
+    function checkAndHideInconSearch() {
+      if (input.value.trim() === '') {
+        inconSearch.style.opacity = '1'; // Affiche l'icône si l'input est vide
+      } else {
+        inconSearch.style.opacity = '0'; // Cache l'icône si l'input contient du texte
       }
+    }
 
-      // Écoute l'événement de focus sur l'input
-      input.addEventListener('focus', function() {
-          checkAndHideInconSearch();
-      });
-
-      // Écoute l'événement de blur sur l'input
-      input.addEventListener('blur', function() {
-          checkAndHideInconSearch();
-      });
-
-      // Écoute l'événement de saisie (input) sur l'input
-      input.addEventListener('input', function() {
-          checkAndHideInconSearch();
-      });
-
-      // Vérifie l'état initial de l'input au chargement de la page
+    // Écoute l'événement de focus sur l'input
+    input.addEventListener('focus', function() {
       checkAndHideInconSearch();
+    });
+
+    // Écoute l'événement de blur sur l'input
+    input.addEventListener('blur', function() {
+      checkAndHideInconSearch();
+    });
+
+    // Écoute l'événement de saisie (input) sur l'input
+    input.addEventListener('input', function() {
+      checkAndHideInconSearch();
+    });
+
+    // Vérifie l'état initial de l'input au chargement de la page
+    checkAndHideInconSearch();
   });
+  
 });
 
 
