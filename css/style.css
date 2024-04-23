@@ -372,6 +372,7 @@ ul.selected{
     padding: 16px;
     border-radius: 10px;
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 #selectRecette{
@@ -379,6 +380,7 @@ ul.selected{
     margin-top: 21px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .itemx{
