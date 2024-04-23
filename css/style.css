@@ -389,3 +389,9 @@ li .selected{
     background-color: none;
     color: none;
 }
+
+.error{
+    text-align: center;
+    width: 1440px;
+    order: 2;
+}
