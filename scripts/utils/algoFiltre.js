@@ -96,21 +96,33 @@ function filtreWithTags(selectedData, selectedValues) {
 }
 
 function filterWithSearch(selectedData, search) {
-    selectedData = selectedData.filter(data => {
-        if (data.name.toLowerCase().includes(search.toLowerCase())) {
-            return true;
-        } else if (data.description.toLowerCase().includes(search.toLowerCase())) {
-            return true;
-        } else if (data.ingredients.some(str => str.toLowerCase().includes(search.toLowerCase()))) {
-            return true;
+    const searchData = [];
+    const searchLower = search.toLowerCase();
+  
+    for (let i = 0; i < selectedData.length; i++) {
+      const data = selectedData[i];
+      const nameLower = data.name.toLowerCase();
+      const descriptionLower = data.description.toLowerCase();
+  
+      if (nameLower.includes(searchLower) || descriptionLower.includes(searchLower)) {
+        searchData.push(data);
+      } else {
+        for (let j = 0; j < data.ingredients.length; j++) {
+          const ingredientLower = data.ingredients[j].toLowerCase();
+          if (ingredientLower.includes(searchLower)) {
+            searchData.push(data);
+            break;
+          }
         }
-        return false;
-    });
-    if (selectedData.length === 0) {
-        createError(search)
+      }
     }
-    return selectedData;
-}
+  
+    if (searchData.length === 0) {
+      createError(search);
+    }
+  
+    return searchData;
+  }
 
 function applyResultFilter(selectedData){
     // Affiche ce qui match avec les articles sélectionnés
