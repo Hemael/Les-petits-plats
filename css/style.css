@@ -236,9 +236,8 @@ h2{
 }
 .chevron{
     display: flex;
-    margin-top: 23px;
+    align-items: center;
     margin-left: 50px;
-    font-weight: 600;
 }
 
 .containerSearchIngredient, .containerSearchAppareils, .containerSearchUstensils{
