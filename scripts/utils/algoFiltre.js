@@ -61,16 +61,17 @@ function resetTag(){
     // Affiche  tous les tags
     const ingredientListItems = document.querySelectorAll(".containerListIngredients li");
     ingredientListItems.forEach((item) => {
-        item.style.display = "list-item";
+        item.parentNode.style.display = "flex";
     });
     const applianceListItems = document.querySelectorAll(".containerListAppareils li");
     applianceListItems.forEach((item) => {
-        item.style.display = "list-item";
+        item.parentNode.style.display = "flex";
     });
     const ustensilListItems = document.querySelectorAll(".containerListUstensils li"); 
     ustensilListItems.forEach((item) => {
-        item.style.display = "list-item";
+        item.parentNode.style.display = "flex";
     });
+
 }
 
 function filtreWithTags(selectedData, selectedValues) {
@@ -146,9 +147,9 @@ function hideNonMatchingListItems(list, selectedData) {
         );
 
         if (!ingredientsMatch && !applianceMatch && !utensilsMatch) {
-        item.style.display = "none";
+            item.parentNode.style.display = "none";
         } else {
-        item.style.display = "list-item";
+            item.parentNode.style.display = "flex";
         }
     });
 
