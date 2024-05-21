@@ -166,6 +166,7 @@ h2{
     
 }
 .quantite{
+    display: flex;
     margin: 0px;
     color: #7A7A7A;
     font-weight: 400;
