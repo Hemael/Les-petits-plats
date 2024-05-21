@@ -10,13 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <script defer type="module" src="scripts/utils/recipes.js"></script>
-    <script defer type="module" src="scripts/factories/recipesFactory.js"></script>
-    <script defer type="module" src="scripts/pages/index.js"></script>    
-    <script defer type="module" src="scripts/utils/algo.js"></script>    
-    <script defer type="module" src="scripts/utils/algoFiltre.js"></script>    
-
-    
+    <script type="module" src="scripts/utils/recipes.js"></script>
+    <script type="module" src="scripts/factories/recipesFactory.js"></script>
+    <script type="module" src="scripts/pages/index.js"></script>    
+    <script type="module" src="scripts/utils/algo.js"></script>    
+    <script type="module" src="scripts/utils/algoFiltre.js"></script>    
   </head>
 
 
@@ -27,8 +25,7 @@
             <a href="index.html"><img src="assets/logo.png" alt="Les petits plats" id="logo" /></a>
             <div id="recherche">
                 <h1 id="search-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN, SIMPLE ET DÉLICIEUSES</h1>
-                <div id="searchBar" aria-label="Barre de recherche" aria-labelledby="search-title">
-                    <label for="searchRecettes"></label>
+                <div id="searchBar">
                     <input type="search" id="site-search" name="searchRecettes" placeholder="Rechercher une recette, un ingrédient,.."required/>
                     <button class="buttonClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
                     <button class="buttonSearch" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
@@ -53,7 +50,7 @@
             <div class="filtreSearch">
               <input type="search" class="barFiltre" name="search-ingredient" data-filter-type="ingredients" required>
               <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
-              <button id='iconSearch' data-type='ingredient' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+              <button data-type='ingredient' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
 
             <div class="containerListIngredients">
@@ -70,8 +67,8 @@
 
             <div class="filtreSearch">
               <input class="barFiltre" type="search" name="search-appareils" data-filter-type="appareils" required>
-              <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times" aria-placeholder="  "></i></button>
-              <button id='iconSearch' data-type='appareils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+              <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
+              <button data-type='appareils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
             <div class="containerListAppareils">
             </div>
@@ -89,7 +86,7 @@
             <div class="filtreSearch">
               <input class="barFiltre" type="search" name="search-ustensils" data-filter-type="ustensils" required>
               <button class="filtreClear" aria-label="Effacer la recherche"><i class="fal fa-times"></i></button>
-              <button id='iconSearch' data-type='ustensils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
+              <button data-type='ustensils' class="buttonFiltre" aria-label="Entrer la recherche"><i class="fal fa-search"></i></button>
             </div>
             <div class="containerListUstensils">
 
