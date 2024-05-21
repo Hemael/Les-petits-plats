@@ -61,7 +61,7 @@ export function recipesFactory(){
         
     recipes.ingredients.forEach((ingredientObj) => {
       const recIngredient = document.createElement("p");      
-      const recQuantite = document.createElement("p"); 
+      const recQuantite = document.createElement("span"); 
 
       
       recIngredient.classList.add("ingredient"); 

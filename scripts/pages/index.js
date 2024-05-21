@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   containers.forEach(function(container) {
     const input = container.querySelector('.barFiltre');
-    const inconSearch = container.querySelector('#iconSearch');
+    const inconSearch = container.querySelector('.buttonFiltre');
 
     // Fonction pour vérifier le contenu de l'input et masquer l'icône si nécessaire
     function checkAndHideInconSearch() {
