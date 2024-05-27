@@ -135,7 +135,6 @@ h2{
     font-size: 12px;
     font-weight: 700;
     line-height: 16.39px;
-    letter-spacing: 9%;
     margin-top: 0px;
     margin-bottom: 0px;
     
@@ -304,11 +303,10 @@ input.barFiltre{
     
 }
 
-[type="search"] {
-    &::-webkit-search-cancel-button{
+[type="search"]::-webkit-search-cancel-button{
         display: none;
     }
-  }
+  
 
   li{
     list-style: none;
@@ -385,11 +383,6 @@ ul.selected{
 
 .itemx{
     padding-left: 15px;
-}
-
-li .selected{
-    background-color: none;
-    color: none;
 }
 
 .error{

@@ -40,7 +40,7 @@ export function updateArticles() {
     cleanError();
 
     // Si aucun tag selectionner, affiche tous les tags
-    if (selectedValues.length === 0 && search.length < 3) {
+    if (selectedValues.length === 0 && search.length < 2) {
         resetTag();
         return;
     }
@@ -48,7 +48,7 @@ export function updateArticles() {
     if (selectedValues.length > 0) {
         selectedData = filtreWithTags(selectedData, selectedValues);
     }
-    if (search.length > 3) {
+    if (search.length > 2) {
         selectedData = filterWithSearch(selectedData, search);
     }
 
