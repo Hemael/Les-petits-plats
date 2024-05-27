@@ -65,15 +65,15 @@ function resetTag(){
     // Affiche  tous les tags
     const ingredientListItems = document.querySelectorAll(".containerListIngredients li");
     for (const item of ingredientListItems) {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     }
     const applianceListItems = document.querySelectorAll(".containerListAppareils li");
     for (const item of applianceListItems) {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     }
     const ustensilListItems = document.querySelectorAll(".containerListUstensils li"); 
     for (const item of ustensilListItems) {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     }
 }
 
@@ -151,9 +151,9 @@ function hideNonMatchingListItems(list, selectedData) {
         const applianceMatch = selectedData.some(data => data.appliance.toLowerCase() === itemValue);
         const ustensilMatch = selectedData.some(data => data.ustensils.some(ustensil => ustensil.toLowerCase() === itemValue));
         if (ingredientsMatch || applianceMatch || ustensilMatch) {
-            item.parentNode.style.display = "flex";
+            item.style.display = "flex";
         } else {
-            item.parentNode.style.display = "none";
+            item.style.display = "none";
         }
     }
 }
