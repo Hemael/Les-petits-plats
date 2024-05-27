@@ -61,15 +61,15 @@ function resetTag(){
     // Affiche  tous les tags
     const ingredientListItems = document.querySelectorAll(".containerListIngredients li");
     ingredientListItems.forEach((item) => {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     });
     const applianceListItems = document.querySelectorAll(".containerListAppareils li");
     applianceListItems.forEach((item) => {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     });
     const ustensilListItems = document.querySelectorAll(".containerListUstensils li"); 
     ustensilListItems.forEach((item) => {
-        item.parentNode.style.display = "flex";
+        item.style.display = "flex";
     });
 
 }
@@ -147,9 +147,9 @@ function hideNonMatchingListItems(list, selectedData) {
         );
 
         if (!ingredientsMatch && !applianceMatch && !utensilsMatch) {
-            item.parentNode.style.display = "none";
+            item.style.display = "none";
         } else {
-            item.parentNode.style.display = "flex";
+            item.style.display = "flex";
         }
     });
 
