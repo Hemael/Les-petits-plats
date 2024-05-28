@@ -52,6 +52,7 @@ export function updateArticles() {
         article.style.display = "none";
     });
     applyResultFilter(selectedData);
+    hideParentIfLiHidden()
 }
 
 function resetTag(){
@@ -71,6 +72,7 @@ function resetTag(){
     ustensilListItems.forEach((item) => {
         item.style.display = "flex";
     });
+    hideParentIfLiHidden()
 
 }
 
@@ -153,6 +155,11 @@ function hideNonMatchingListItems(list, selectedData) {
         }
     });
 
+}
+export function hideParentIfLiHidden() {
+    document.querySelectorAll('li').forEach(li => {
+        li.parentElement.style.display = li.style.display;
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
