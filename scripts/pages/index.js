@@ -69,6 +69,11 @@ buttons.forEach((button) => {
       input.value = "";
       input.dispatchEvent(new Event('input'));
       input.dispatchEvent(new Event('keyup'));
+      document.querySelectorAll('li').forEach(li => {
+        li.parentElement.style.display = li.style.display;
+
+       
+    });
     }
   });
 });

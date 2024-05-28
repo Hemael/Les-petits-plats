@@ -46,7 +46,8 @@ export function updateArticles() {
     }
     let selectedData = filterData;
     if (selectedValues.length > 0) {
-        selectedData = filtreWithTags(selectedData, selectedValues);
+        selectedData = filtreWithTags(selectedData, selectedValues,);
+        
     }
     if (search.length > 2) {
         selectedData = filterWithSearch(selectedData, search);
@@ -57,6 +58,7 @@ export function updateArticles() {
         article.style.display = "none";
     }
     applyResultFilter(selectedData);
+    hideParentIfLiHidden();
 }
 
 function resetTag(){
@@ -75,6 +77,7 @@ function resetTag(){
     for (const item of ustensilListItems) {
         item.style.display = "flex";
     }
+    hideParentIfLiHidden();
 }
 
 function filtreWithTags(selectedData, selectedValues) {
@@ -93,6 +96,8 @@ function filtreWithTags(selectedData, selectedValues) {
         })
     })
     return selectedData;
+    
+    
 }
 
 function filterWithSearch(selectedData, search) {
@@ -120,7 +125,6 @@ function filterWithSearch(selectedData, search) {
     if (searchData.length === 0) {
       createError(search);
     }
-  
     return searchData;
   }
 
@@ -157,6 +161,14 @@ function hideNonMatchingListItems(list, selectedData) {
         }
     }
 }
+
+
+export function hideParentIfLiHidden() {
+    document.querySelectorAll('li').forEach(li => {
+        li.parentElement.style.display = li.style.display;
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     selectRecette = document.getElementById("selectRecette");

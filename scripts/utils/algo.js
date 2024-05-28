@@ -1,4 +1,4 @@
-import {updateArticles} from "../utils/algoFiltre.js"
+import {updateArticles, hideParentIfLiHidden} from "../utils/algoFiltre.js"
 
 let articleCounter = 0;
 
@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedItem.appendChild(createItemX());
       selectedItemsMap.set(element, selectedItem);
       addRemoveListeners(selectedItem, element);
+      hideParentIfLiHidden()
     } else {
       // Si l'élément est déjà sélectionné, le désélectionner
       element.classList.remove("selected");
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function filterContainerList(container, searchTerm) {
     const listItems = container.querySelectorAll('li');
     const searchClear = container.querySelector('.searchClear');
+    hideParentIfLiHidden()
     
     if (searchClear) {
       searchClear.style.display = '';
@@ -163,11 +165,11 @@ document.addEventListener("DOMContentLoaded", () => {
         item.parentNode.classList.remove('hidden');
       });
       container.classList.remove('selected'); // Reset the "selected" class of the "ul" element
+      hideParentIfLiHidden()
     } else {
       // Filter list items based on the search term
       listItems.forEach(item => {
         const itemText = item.textContent.trim().toLowerCase();
-    
         if (itemText.includes(searchTerm)) {
           item.parentNode.style.display = ''; // Show the matching item
           item.parentNode.classList.remove('hidden'); // Reset the "hidden" class
@@ -188,9 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
           searchClear.style.display = 'none';
         }
       }
-    
-      // Update the articles based on the filtered data
-      updateArticles();
+
+
     }
   }
     
